@@ -85,13 +85,27 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                 });
               },
             ),
-            TextField(
-              controller: phoneController,
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                prefix: Text("+91 ", style: TextStyle(color: Colors.black)),
-                hint: Text("Enter number here"),
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hint: Text(' +91', style: TextStyle(fontSize: 18)),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  // width: 200,
+                  child: TextField(
+                    controller: phoneController,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      hint: Text("Enter number here"),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Expanded(child: SizedBox()),
             SizedBox(
@@ -99,14 +113,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VerifyPhoneScreen(
-                        phoneNumber: phoneController.text.toString(),
-                      ),
-                    ),
-                  );
+                  login(phoneController.text.toString());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
@@ -120,5 +127,25 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
         ),
       ),
     );
+  }
+
+  login(String phoneNumber) {
+    if (phoneNumber.length != 10) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          showCloseIcon: true,
+          behavior: SnackBarBehavior.floating,
+          content: Text('Enter Valid Phone Number'),
+        ),
+      );
+    } else {
+      return Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VerifyPhoneScreen(phoneNumber: phoneNumber),
+        ),
+      );
+    }
   }
 }
