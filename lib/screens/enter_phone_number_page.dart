@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/screens/verify_phone.dart';
 
 class EnterPhoneNumberPage extends StatefulWidget {
-  EnterPhoneNumberPage({super.key});
+  const EnterPhoneNumberPage({super.key});
 
   @override
   State<EnterPhoneNumberPage> createState() => _EnterPhoneNumberPageState();
@@ -9,7 +10,7 @@ class EnterPhoneNumberPage extends StatefulWidget {
 
 class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
   final Color _textColor = Color.fromARGB(255, 1, 169, 52);
-
+  TextEditingController phoneController = TextEditingController();
   String selectedCountrie = "India";
   List<String> countries = [
     "Africa",
@@ -50,7 +51,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                 color: _textColor,
               ),
             ),
-            Expanded(child: SizedBox()),
+            const SizedBox(height: 60),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: RichText(
@@ -74,8 +75,8 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
               hint: Text('Select Country'),
               items: countries.map((String country) {
                 return DropdownMenuItem(
-                  child: Text(country.toString()),
                   value: country,
+                  child: Text(country.toString()),
                 );
               }).toList(),
               onChanged: (value) {
@@ -85,6 +86,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
               },
             ),
             TextField(
+              controller: phoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 prefix: Text("+91 ", style: TextStyle(color: Colors.black)),
@@ -97,12 +99,14 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => (),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VerifyPhoneScreen(
+                        phoneNumber: phoneController.text.toString(),
+                      ),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
