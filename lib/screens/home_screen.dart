@@ -1,5 +1,5 @@
 import 'package:amicons/amicons.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsapp_clone/screens/calls_page.dart';
@@ -21,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
   final pages = [ChatsPage(), StatusPage(), CallsPage()];
+  final title = ["WhatsApp", "Status", "Calls"];
+  // final titleText = [ChatsPageTitle(), StatusPageTitle(), CallsPageTitle()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
         scrolledUnderElevation: 0, // when scrolling
         surfaceTintColor: Colors.transparent, // disables material tint
         title: Text(
-          'WhatsApp',
+          title[currentIndex],
           style: TextStyle(
             fontWeight: FontWeight.bold,
+
             color: Colors.green,
             fontSize: 26,
           ),
         ),
         actions: [
-          FaIcon(FontAwesomeIcons.qrcode),
+          if (currentIndex == 0) FaIcon(FontAwesomeIcons.qrcode),
+          if (currentIndex == 1 || currentIndex == 2)
+            Icon(Icons.search, size: 30),
+
           const SizedBox(width: 25),
           FaIcon(FontAwesomeIcons.ellipsisVertical),
           const SizedBox(width: 25),
@@ -80,6 +86,70 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.call), label: "Calls"),
         ],
       ),
+      floatingActionButton: currentIndex == 0
+          ? FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () {},
+              child: Icon(
+                semanticLabel: "Add Chat",
+                Icons.chat,
+                size: 25,
+                color: Colors.white,
+              ),
+            )
+          : currentIndex == 1
+          ? FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () {},
+              child: Icon(Icons.camera_alt, size: 25, color: Colors.white),
+            )
+          : FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () {},
+              child: Icon(Icons.add_call, size: 25, color: Colors.white),
+            ),
     );
+  }
+
+  Text ChatsPageTitle() {
+    return Text(
+      'WhatsApp',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.green,
+        fontSize: 26,
+      ),
+    );
+  }
+
+  Text StatusPageTitle() {
+    return Text(
+      'Status',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontSize: 24,
+      ),
+    );
+  }
+
+  Text CallsPageTitle() {
+    return Text(
+      'Calls',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontSize: 24,
+      ),
+    );
+  }
+}
+
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar();
   }
 }
