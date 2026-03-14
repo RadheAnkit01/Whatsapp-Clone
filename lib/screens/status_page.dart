@@ -17,7 +17,8 @@ class StatusPage extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 6),
             height: 160,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,

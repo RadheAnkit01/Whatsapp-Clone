@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
   final pages = [ChatsPage(), StatusPage(), CallsPage()];
-  final title = ["WhatsApp", "Updated", "Calls"];
+  final title = ["WhatsApp", "Updates", "Calls"];
   // final titleText = [ChatsPageTitle(), StatusPageTitle(), CallsPageTitle()];
   @override
   Widget build(BuildContext context) {

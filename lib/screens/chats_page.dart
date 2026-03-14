@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -39,6 +40,8 @@ class ChatsPage extends StatelessWidget {
         // SizedBox(height: 10),
         Expanded(
           child: ListView.builder(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            dragStartBehavior: DragStartBehavior.start,
             itemCount: 100,
             itemBuilder: (context, index) {
               return Container(
