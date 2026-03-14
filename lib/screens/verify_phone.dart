@@ -119,7 +119,9 @@ class VerifyPhoneScreen extends StatelessWidget {
       return {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ProfileInfoScreen()),
+          MaterialPageRoute(
+            builder: (context) => ProfileInfoScreen(phoneNumber: phoneNumber),
+          ),
         ),
       };
     }

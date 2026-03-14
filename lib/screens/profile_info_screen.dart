@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:whatsapp_clone/screens/home_screen.dart';
 
 class ProfileInfoScreen extends StatelessWidget {
+  String phoneNumber;
+  ProfileInfoScreen({super.key, required this.phoneNumber});
   final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
   TextEditingController nameController = TextEditingController();
   @override
@@ -63,7 +66,17 @@ class ProfileInfoScreen extends StatelessWidget {
               width: 350,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(
+                        name: nameController.text.toString(),
+                        phoneNumber: phoneNumber,
+                      ),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
