@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
   final pages = [ChatsPage(), StatusPage(), CallsPage()];
-  final title = ["WhatsApp", "Status", "Calls"];
+  final title = ["WhatsApp", "Updated", "Calls"];
   // final titleText = [ChatsPageTitle(), StatusPageTitle(), CallsPageTitle()];
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
           BottomNavigationBarItem(
             icon: Icon(Amicons.vuesax_status, fontWeight: FontWeight.bold),
-            label: "Status",
+            label: "Updates",
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.groups),
@@ -109,47 +109,5 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Icon(Icons.add_call, size: 25, color: Colors.white),
             ),
     );
-  }
-
-  Text ChatsPageTitle() {
-    return Text(
-      'WhatsApp',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.green,
-        fontSize: 26,
-      ),
-    );
-  }
-
-  Text StatusPageTitle() {
-    return Text(
-      'Status',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-        fontSize: 24,
-      ),
-    );
-  }
-
-  Text CallsPageTitle() {
-    return Text(
-      'Calls',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-        fontSize: 24,
-      ),
-    );
-  }
-}
-
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar();
   }
 }
