@@ -2,13 +2,25 @@ import 'package:amicons/amicons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:whatsapp_clone/screens/calls_page.dart';
+import 'package:whatsapp_clone/screens/chats_page.dart';
+import 'package:whatsapp_clone/screens/status_page.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   String name;
   String phoneNumber;
-  HomeScreen({super.key, required this.name, required this.phoneNumber});
-  final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
 
+  HomeScreen({super.key, required this.name, required this.phoneNumber});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 0;
+
+  final Color fontColor = const Color.fromARGB(255, 0, 166, 6);
+  final pages = [ChatsPage(), StatusPage(), CallsPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,79 +56,17 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 60,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsetsGeometry.symmetric(
-                vertical: 5,
-                horizontal: 10,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white30,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    hint: Row(
-                      children: [
-                        SizedBox(width: 10),
-                        Icon(Icons.search, color: Colors.black54),
-                        const SizedBox(width: 15),
-                        Text('Ask Meta AI or Search'),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // SizedBox(height: 10),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 100,
-              itemBuilder: (context, index) {
-                return Container(
-                  color: Colors.black12,
-                  padding: EdgeInsets.symmetric(vertical: 2),
-                  margin: EdgeInsets.only(top: 5),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 30,
-                      child: FaIcon(
-                        FontAwesomeIcons.solidCircleUser,
-                        size: 55,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                    title: Text(
-                      'Users ${index + 1}',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text('last message'),
-                    trailing: Column(
-                      children: [
-                        Text('12:10 PM', style: TextStyle(fontSize: 13)),
-                        SizedBox(height: 10),
-                        if (index % 5 == 0)
-                          FaIcon(FontAwesomeIcons.bellSlash, size: 20),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        currentIndex: currentIndex,
+        iconSize: 25,
+
+        selectedFontSize: 15,
+        onTap: (value) {
+          currentIndex = value;
+          setState(() {});
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
           BottomNavigationBarItem(
