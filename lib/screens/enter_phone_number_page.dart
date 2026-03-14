@@ -140,7 +140,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
         ),
       );
     } else {
-      return Navigator.push(
+      return Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => VerifyPhoneScreen(phoneNumber: phoneNumber),

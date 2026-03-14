@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/screens/login_screen.dart';
+import 'package:whatsapp_clone/screens/profile_info_screen.dart';
 
 class VerifyPhoneScreen extends StatelessWidget {
   String phoneNumber;
@@ -117,9 +117,9 @@ class VerifyPhoneScreen extends StatelessWidget {
     } else {
       clearAllController();
       return {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => ProfileInfoScreen()),
         ),
       };
     }
